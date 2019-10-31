@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace LetsGoOnAnAdventure
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        public Form1()
+
+        string userName = null;
+        Companion Gian
+        public FormMain()
         {
             InitializeComponent();
+        }
+
+        private void buttonBegin_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
