@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+// Checking changes
 namespace LetsGoOnAnAdventure
 {
     public partial class FormMain : Form
@@ -32,17 +32,26 @@ namespace LetsGoOnAnAdventure
         private void buttonBegin_Click(object sender, EventArgs e)
         {
             userName = textBoxName.Text;
-            labelTitle.Visible = false;
-            textBoxName.Visible = false;
-            labelName.Visible = false;
-            buttonBegin.Visible = false;
 
-            richTextBoxNarration.Visible = true;
-            buttonContinue.Visible = true;
+            if (userName != "")
+            {
+                labelTitle.Visible = false;
+                textBoxName.Visible = false;
+                labelName.Visible = false;
+                buttonBegin.Visible = false;
 
-            richTextBoxNarration.Text = "****************************************" +
-                                        "Welcome " + userName + ", the adventure simulator is about to begin..." +
-                                        "****************************************";
+                richTextBoxNarration.Visible = true;
+                buttonContinue.Visible = true;
+
+                richTextBoxNarration.Text = "****************************************\n" +
+                                            "Welcome " + userName + ", the adventure simulator is about to begin...\n" +
+                                            "****************************************";
+            }
+
+            else
+            {
+                MessageBox.Show("Enter a name to begin simulation");
+            }
         }
 
         private void narration()
@@ -50,7 +59,7 @@ namespace LetsGoOnAnAdventure
             switch (numEvent)
             {
                 case 0:
-                    richTextBoxNarration.Text = "****************************************" +
+                    richTextBoxNarration.Text = "****************************************\n" +
                         "You are currently in your room after a long day of school.\n" +
                         "It is currently 6 P.M. and the group chat has decided to get dinner and you notice your stomach rumble.\n" +
                         "You decide to go to the dining hall in hopes of getting a delicious meal.\n" +
@@ -58,21 +67,21 @@ namespace LetsGoOnAnAdventure
                     break;
 
                 case 2:
-                    richTextBoxNarration.Text = "****************************************" +
+                    richTextBoxNarration.Text = "****************************************\n" +
                         "You eat with your friends Michael, Melissa, Kenny, Victoria, Kevin, Rebekah, and Gian.\n" +
                         "Conversation flows as you all eat your meals.\n" +
                         "****************************************";
                     break;
 
                 case 3:
-                    richTextBoxNarration.Text = "****************************************" +
+                    richTextBoxNarration.Text = "****************************************\n" +
                         "Once everyone is done, you all put up your dishes and head over to Residence Hall South in order " +
                         "to commence friendshiping.\n" +
                         "****************************************";
                     break;
 
                 case 4:
-                    richTextBoxNarration.Text = "****************************************" +
+                    richTextBoxNarration.Text = "****************************************\n" +
                         "While at south, you all end up doing homework.\n" +
                         "Michael, Melissa and Victoria are working on Calculus.\n" +
                         "Kenny and Gian are working on Chemistry.\n" +
@@ -85,13 +94,13 @@ namespace LetsGoOnAnAdventure
                     break;
 
                 case 6:
-                    richTextBoxNarration.Text = "****************************************" +
+                    richTextBoxNarration.Text = "****************************************\n" +
                         "After a few hours of homework, the room has turned into chaos.\n" +
                         "****************************************";
                         break;
 
                 case 7:
-                    richTextBoxNarration.Text = "****************************************" +
+                    richTextBoxNarration.Text = "****************************************\n" +
                         "Michael, Melissa, and Victoria are now throwing Hot Tamales at each other.\n";
                     break;
 
@@ -113,7 +122,7 @@ namespace LetsGoOnAnAdventure
                     break;
 
                 case 12:
-                    richTextBoxNarration.Text = "****************************************" +
+                    richTextBoxNarration.Text = "****************************************\n" +
                         "Seeing this, you decide it's time for a break and ask\n" +
                         "\"Who is up for an adventure?\"\n";
                     break;
