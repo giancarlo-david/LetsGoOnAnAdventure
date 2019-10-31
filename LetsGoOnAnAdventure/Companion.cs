@@ -8,10 +8,10 @@ namespace LetsGoOnAnAdventure
 {
     class Companion
     {
-        bool? Join { get; set; }
-        string[] Sound { get; set; }
-        int RegularOdd { get; set; }
-        int FinalOdd { get; set; }
+        private bool? Join { get; set; }
+        private string[] Sound;
+        private int RegularOdd { get; set; }
+        private int FinalOdd { get; set; }
 
         Random rng = new Random();
 
@@ -21,14 +21,16 @@ namespace LetsGoOnAnAdventure
         }
 
         // Parameterized Constructor
-        public Companion(bool join, string sound1, string sound2, string sound3, int regularOdds, int finalOdds)
+        public Companion(bool? join, string sound1, string sound2, string sound3, int regularOdds, int finalOdds)
         {
-            this.Join = join;
-            this.Sound[0] = sound1;
-            this.Sound[1] = sound2;
-            this.Sound[2] = sound3;
-            this.RegularOdd = regularOdds;
-            this.FinalOdd = finalOdds;
+            Sound = new string[3];
+
+            Join = join;
+            Sound[0] = sound1;
+            Sound[1] = sound2;
+            Sound[2] = sound3;
+            RegularOdd = regularOdds;
+            FinalOdd = finalOdds;
         }
 
         // Complain function to play randomly selected sound when companion complains
@@ -36,10 +38,10 @@ namespace LetsGoOnAnAdventure
         {
             string saying = null;
 
-            if (this.Join == true)
+            if (Join == true)
             {
                 int chosenSound = rng.Next(3);
-                saying = this.Sound[chosenSound];
+                saying = Sound[chosenSound];
             }
 
             else
@@ -53,61 +55,61 @@ namespace LetsGoOnAnAdventure
         // Check to see if companion will go on regular events
         public bool? ToGo(int guess)
         {
-            int numToGuess = rng.Next((this.RegularOdd + 1) + 1);
+            int numToGuess = rng.Next((RegularOdd + 1) + 1);
 
             // Checks to see if guess is within the range
-            if (guess >= 1 && guess <= this.RegularOdd)
+            if (guess >= 1 && guess <= RegularOdd)
             {
                 if (guess == numToGuess)
                 {
-                    this.Join = true;
+                    Join = true;
                 }
 
                 else
                 {
-                    this.Join = false;
+                    Join = false;
                 }
             }
 
             else
             {
-                this.Join = null;
+                Join = null;
             }
 
-            return this.Join;
+            return Join;
         }
 
         public bool? FinalsToGo(int guess)
         {
-            int numToGuess = rng.Next((this.FinalOdd + 1) + 1);
+            int numToGuess = rng.Next((FinalOdd + 1) + 1);
 
             // Checks to see if guess is within the range
-            if (guess >= 1 && guess <= this.FinalOdd)
+            if (guess >= 1 && guess <= FinalOdd)
             {
                 if (guess == numToGuess)
                 {
-                    this.Join = true;
+                    Join = true;
                 }
 
                 else
                 {
-                    this.Join = false;
+                    Join = false;
                 }
             }
 
             else
             {
-                this.Join = null;
+                Join = null;
             }
 
-            return this.Join;
+            return Join;
         }
 
         public bool? ResetGo()
         {
-            this.Join = null;
+            Join = null;
 
-            return this.Join;
+            return Join;
         }
     }
     
