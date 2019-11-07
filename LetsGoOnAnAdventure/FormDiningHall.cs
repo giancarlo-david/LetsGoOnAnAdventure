@@ -12,7 +12,7 @@ namespace LetsGoOnAnAdventure
 {
     public partial class FormDiningHall : Form
     {
-        Stations stationPicked = 0;
+        Stations stationPicked = Stations.None;
 
         public FormDiningHall()
         {
@@ -21,6 +21,7 @@ namespace LetsGoOnAnAdventure
 
         enum Stations
         {
+            None,
             Grill,
             Deli,
             Burger,
@@ -31,15 +32,7 @@ namespace LetsGoOnAnAdventure
         {
             stationPicked = Stations.Grill;
             groupBoxStations.Visible = false;
-            richTextBoxOptionSelected.Visible = true;
-
-            richTextBoxOptionSelected.Text = "****************************************\n" +
-                "You see some nasty broccoli and make a comment about it.\n" +
-                "You don't touch the broccoli but instead get the other food in the station.\n" +
-                "On your way to your table, the broccoli lady runs to you and says\n" +
-                "\"I know you wanted some of these\" as she hands you a bowl of broccoli\nand stares you down\n" +
-                "****************************************";
-
+            displayNarration();
             buttonContinue.Visible = true;
         }
 
@@ -47,13 +40,7 @@ namespace LetsGoOnAnAdventure
         {
             stationPicked = Stations.Deli;
             groupBoxStations.Visible = false;
-            richTextBoxOptionSelected.Visible = true;
-
-            richTextBoxOptionSelected.Text = "****************************************\n" +
-                 "You see no other good options so you force yourself to make a sandwich to eat.\n" +
-                 "After using the panini press, you end up with a mediocre sandwich.\n" +
-                 "****************************************";
-
+            displayNarration();
             buttonContinue.Visible = true;
         }
 
@@ -61,15 +48,83 @@ namespace LetsGoOnAnAdventure
         {
             stationPicked = Stations.Burger;
             groupBoxStations.Visible = false;
+            displayNarration();
+            buttonContinue.Visible = true;
+        }
+
+        private void buttonPasta_Click(object sender, EventArgs e)
+        {
+            stationPicked = Stations.Pasta;
+            groupBoxStations.Visible = false;
+            displayNarration();
+        }
+
+        private void displayNarration()
+        {
             richTextBoxOptionSelected.Visible = true;
 
-            richTextBoxOptionSelected.Text = "****************************************\n" +
-                "You choose to get a burger because you think \"What could go wrong?\"\n" +
-                "It's after you make the burger that you realize you have made a huge mistake\n" +
-                "The burger is burnt and dry, and you hate yourself for every bite you take" +
-                "****************************************";
+            switch (stationPicked)
+            {
+                case Stations.Grill:
+                    richTextBoxOptionSelected.Text = "****************************************\n" +
+                        "You see some nasty broccoli and make a comment about it.\n" +
+                        "You don't touch the broccoli but instead get the other food in the station.\n" +
+                        "On your way to your table, the broccoli lady runs to you and says\n" +
+                        "\"I know you wanted some of these\" as she hands you a bowl of broccoli\nand stares you down\n" +
+                        "****************************************";
+                    break;
+                case Stations.Deli:
+                    richTextBoxOptionSelected.Text = "****************************************\n" +
+                         "You see no other good options so you force yourself to make a sandwich to eat.\n" +
+                         "After using the panini press, you end up with a mediocre sandwich.\n" +
+                         "****************************************";
+                    break;
+                case Stations.Burger:
+                    richTextBoxOptionSelected.Text = "****************************************\n" +
+                        "You choose to get a burger because you think \"What could go wrong?\"\n" +
+                        "It's after you make the burger that you realize you have made a huge mistake\n" +
+                        "The burger is burnt and dry, and you hate yourself for every bite you take" +
+                        "****************************************";
+                    break;
+                case Stations.Pasta:
+                    richTextBoxOptionSelected.Text = "****************************************\n" +
+                        "You gather the vegetables that you want in your pasta,\n and give Richard your bowl." +
+                        "****************************************";
+                    wantChicken();
+                    pickSauce();
 
-            buttonContinue.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void wantChicken()
+        {
+            panelChicken.Visible = true;
+        }
+
+        private void pickSauce()
+        {
+
+        }
+
+        private void buttonYesChicken_Click(object sender, EventArgs e)
+        {
+                
+        }
+
+        private void buttonContinue_Click(object sender, EventArgs e)
+        {
+            if (stationPicked == Stations.Burger || stationPicked == Stations.Grill || stationPicked == Stations.Deli)
+            {
+                this.Hide();
+            }
+
+            else
+            {
+
+            }
         }
     }
 }

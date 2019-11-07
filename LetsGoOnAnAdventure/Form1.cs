@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// Checking changes
+
 namespace LetsGoOnAnAdventure
 {
     public partial class FormMain : Form
